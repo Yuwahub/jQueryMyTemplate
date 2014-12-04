@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="js/jquery.js"></script>
+<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>-->
+<script type="text/javascript">
+<!--
+
+$(document).ready(function() {
+
+	var links = $("#searchlist li");
+	
+	// linkURLを配列化する
+	var linkURL = [];
+	for (var i = 0; i < links.length; i++){
+		var j= i+1;
+		// liのj番目のURLをlinkURL[i]に代入
+		linkURL[i] = $("#searchlist li:nth-child("+j+") a").attr("href");
+	}
+
+	// フォームにテキストが書かれたとき実行
+	$("#formText").bind("keyup",function(){
+		// フォーム内のテキストを格納
+		var formText = $(this).val();
+		// フォーム内のテキストをliのspanに表示
+		$("li span").text(formText);
+		// フォーム内のテキストをliのリンク箇所に追加 （※）
+		for (var i = 0; i < links.length; i++){
+			// liのj番目のaにlinkURL[i]＋formTextを代入
+			var j= i+1;
+			$("#searchlist li:nth-child("+j+") a").attr("href",linkURL[i] + formText);
+		}
+	});
+
+/*
+	var linkURL01 = $("li#search01 a").attr("href");
+	var linkURL02 = $("li#search02 a").attr("href");
+	var linkURL03 = $("li#search03 a").attr("href");
+	var linkURL04 = $("li#search04 a").attr("href");
+	var linkURL05 = $("li#search05 a").attr("href");
+	
+	$("#message").bind("keyup",function(){
+		// 入力欄のテキスト
+		var formText = $(this).val();
+		$("li span").text(formText);
+		$("li#search01 a").attr("href",linkURL01 + formText);
+		$("li#search02 a").attr("href",linkURL02 + formText);
+		$("li#search03 a").attr("href",linkURL03 + formText);
+		$("li#search04 a").attr("href",linkURL04 + formText);
+		$("li#search04 a").attr("href",linkURL05 + formText);
+	});
+	
+	$("#message").blur(function() {
+		$("li span").text($("#message").val());
+		$("li a").each(function(i) {
+			i = i+1;
+			var linkURL = $(this).attr("href");
+			var linkURL2 = $("#message").val();
+			$(this).attr("href",linkURL+linkURL2);
+		});
+	});
+*/
+
+});
+
+//-->
+</script>
+
+<style type="text/css">
+* {
+}
+</style>
+
+</head>
+
+<body>
+
+<div>
+<input type="text" id="formText">
+<ul id="searchlist">
+<li><a href="http://www.google.co.jp/search?um=1&ie=UTF-8&tbm=isch&source=og&sa=N&hl=ja&tab=wi&biw=800&bih=769&q=">http://www.google.co.jp/search?q=<span></span></a></li>
+<li><a href="http://www.google.co.jp/search?q=フランス語 ">http://www.google.co.jp/search?q=フランス語 <span></span></a></li>
+<li><a href="http://www.google.co.jp/search?q=読み ">http://www.google.co.jp/search?q=読み <span></span></a></li>
+<li><a href="http://eow.alc.co.jp/">http://eow.alc.co.jp/<span></span></a></li>
+<li><a href="http://www.wordreference.com/fren/">http://www.wordreference.com/fren/<span></span></a></li>
+
+</ul>
+
+</div>
+
+</body></html>
